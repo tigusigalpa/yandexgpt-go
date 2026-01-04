@@ -1,12 +1,14 @@
 # YandexGPT Go SDK
 
+![YandexGPT Golang](https://github.com/user-attachments/assets/35073f18-14ce-486f-937b-4c70e9af9e6c)
+
 [![Go Version](https://img.shields.io/github/go-mod/go-version/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go)
 [![License](https://img.shields.io/github/license/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/blob/main/LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tigusigalpa/yandexgpt-go)](https://goreportcard.com/report/github.com/tigusigalpa/yandexgpt-go)
 
 **🌐 Язык:** Русский | [English](README.md)
 
-Полнофункциональный Go SDK для работы с YandexGPT API. Пакет предоставляет удобный интерфейс для интеграции с AI моделями Yandex Cloud, включая поддержку YandexART.
+Полнофункциональный Go/Golang SDK для работы с YandexGPT API. Пакет предоставляет удобный интерфейс для интеграции с AI моделями Yandex Cloud, включая поддержку YandexART.
 
 > **Примечание:** Пакет использует [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) для управления облачной инфраструктурой Yandex Cloud (организации, облака, каталоги, авторизация).
 
