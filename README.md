@@ -229,6 +229,61 @@ func main() {
 }
 ```
 
+### Reasoning Mode
+
+The reasoning mode enables models to perform chain-of-thought reasoning for complex tasks:
+
+```go
+package main
+
+import (
+    "fmt"
+    "log"
+    
+    "github.com/tigusigalpa/yandexgpt-go"
+    "github.com/tigusigalpa/yandexgpt-go/models"
+)
+
+func main() {
+    client, err := yandexgpt.NewClient("your_oauth_token", "your_folder_id")
+    if err != nil {
+        log.Fatal(err)
+    }
+    
+    effortMedium := "medium"
+    options := &yandexgpt.CompletionOptions{
+        Temperature: 0.1,
+        MaxTokens:   2000,
+        ReasoningOptions: &yandexgpt.ReasoningOptions{
+            Mode:   "ENABLED_HIDDEN",
+            Effort: &effortMedium,
+        },
+    }
+    
+    response, err := client.GenerateText(
+        "Solve this logic problem: If all roses are flowers, and some flowers are red, can we conclude that some roses are red?",
+        models.YandexGPT,
+        options,
+    )
+    if err != nil {
+        log.Fatal(err)
+    }
+    
+    fmt.Println(response.Result.Alternatives[0].Message.Text)
+    
+    // Check reasoning tokens usage
+    if response.Result.Usage.ReasoningTokens > 0 {
+        fmt.Printf("Reasoning tokens used: %d\n", response.Result.Usage.ReasoningTokens)
+    }
+}
+```
+
+**Reasoning Mode Options:**
+- `Mode`: `"DISABLED"` (default), `"ENABLED_HIDDEN"` (enables reasoning without showing the chain)
+- `Effort`: `"low"`, `"medium"`, `"high"` (controls reasoning depth, optional)
+
+📚 **Documentation:** [Reasoning Mode in YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
+
 ---
 
 ## 🤖 Available models
@@ -247,9 +302,15 @@ func main() {
 
 ```go
 type CompletionOptions struct {
-    Stream      bool    // Streaming (not yet supported)
-    Temperature float64 // Creativity (0.0 - 1.0)
-    MaxTokens   int     // Maximum number of tokens
+    Stream           bool              // Streaming (not yet supported)
+    Temperature      float64           // Creativity (0.0 - 1.0)
+    MaxTokens        int               // Maximum number of tokens
+    ReasoningOptions *ReasoningOptions // Reasoning mode settings (optional)
+}
+
+type ReasoningOptions struct {
+    Mode   string  // "DISABLED", "ENABLED_HIDDEN"
+    Effort *string // "low", "medium", "high" (optional)
 }
 ```
 
@@ -305,6 +366,7 @@ See the [examples](examples/) directory for more usage examples:
 - [Dialogue](examples/dialogue/main.go)
 - [Image generation](examples/image/main.go)
 - [Custom options](examples/options/main.go)
+- [Reasoning mode](examples/reasoning/main.go)
 
 ---
 

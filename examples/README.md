@@ -74,6 +74,21 @@ This example demonstrates:
 - Limiting token count
 - Configuring generation options
 
+### Reasoning Mode
+
+Using reasoning mode for complex tasks:
+
+```bash
+cd examples/reasoning
+go run main.go
+```
+
+This example demonstrates:
+- Enabling reasoning mode with ENABLED_HIDDEN
+- Setting reasoning effort levels (low, medium, high)
+- Tracking reasoning tokens usage
+- Comparing results with disabled reasoning mode
+
 ## 📚 Example Code Snippets
 
 ### Simple Text Generation
@@ -142,6 +157,31 @@ if err != nil {
 
 imageData, _ := base64.StdEncoding.DecodeString(result.ImageBase64)
 os.WriteFile("output.jpg", imageData, 0644)
+```
+
+### Reasoning Mode
+
+```go
+effortMedium := "medium"
+options := &yandexgpt.CompletionOptions{
+    Temperature: 0.1,
+    MaxTokens:   2000,
+    ReasoningOptions: &yandexgpt.ReasoningOptions{
+        Mode:   "ENABLED_HIDDEN",
+        Effort: &effortMedium,
+    },
+}
+
+response, err := client.GenerateText(
+    "Solve this logic problem: ...",
+    models.YandexGPT,
+    options,
+)
+
+// Check reasoning tokens usage
+if response.Result.Usage.ReasoningTokens > 0 {
+    fmt.Printf("Reasoning tokens: %d\n", response.Result.Usage.ReasoningTokens)
+}
 ```
 
 ## 🔧 Troubleshooting

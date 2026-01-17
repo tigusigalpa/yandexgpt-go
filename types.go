@@ -5,10 +5,16 @@ type Message struct {
 	Text string `json:"text"`
 }
 
+type ReasoningOptions struct {
+	Mode   string  `json:"mode,omitempty"`
+	Effort *string `json:"effort,omitempty"`
+}
+
 type CompletionOptions struct {
-	Stream      bool    `json:"stream"`
-	Temperature float64 `json:"temperature"`
-	MaxTokens   int     `json:"maxTokens"`
+	Stream           bool               `json:"stream"`
+	Temperature      float64            `json:"temperature"`
+	MaxTokens        int                `json:"maxTokens"`
+	ReasoningOptions *ReasoningOptions  `json:"reasoningOptions,omitempty"`
 }
 
 type CompletionRequest struct {
@@ -26,6 +32,7 @@ type Usage struct {
 	InputTextTokens  int `json:"inputTextTokens"`
 	CompletionTokens int `json:"completionTokens"`
 	TotalTokens      int `json:"totalTokens"`
+	ReasoningTokens  int `json:"reasoningTokens,omitempty"`
 }
 
 type Result struct {

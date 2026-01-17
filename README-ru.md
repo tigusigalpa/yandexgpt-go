@@ -229,6 +229,61 @@ func main() {
 }
 ```
 
+### Режим рассуждений
+
+Режим рассуждений позволяет моделям выполнять цепочку рассуждений для решения сложных задач:
+
+```go
+package main
+
+import (
+    "fmt"
+    "log"
+    
+    "github.com/tigusigalpa/yandexgpt-go"
+    "github.com/tigusigalpa/yandexgpt-go/models"
+)
+
+func main() {
+    client, err := yandexgpt.NewClient("your_oauth_token", "your_folder_id")
+    if err != nil {
+        log.Fatal(err)
+    }
+    
+    effortMedium := "medium"
+    options := &yandexgpt.CompletionOptions{
+        Temperature: 0.1,
+        MaxTokens:   2000,
+        ReasoningOptions: &yandexgpt.ReasoningOptions{
+            Mode:   "ENABLED_HIDDEN",
+            Effort: &effortMedium,
+        },
+    }
+    
+    response, err := client.GenerateText(
+        "Решите логическую задачу: Если все розы - цветы, и некоторые цветы - красные, можно ли утверждать, что некоторые розы - красные?",
+        models.YandexGPT,
+        options,
+    )
+    if err != nil {
+        log.Fatal(err)
+    }
+    
+    fmt.Println(response.Result.Alternatives[0].Message.Text)
+    
+    // Проверка использования токенов рассуждения
+    if response.Result.Usage.ReasoningTokens > 0 {
+        fmt.Printf("Использовано токенов рассуждения: %d\n", response.Result.Usage.ReasoningTokens)
+    }
+}
+```
+
+**Параметры режима рассуждений:**
+- `Mode`: `"DISABLED"` (по умолчанию), `"ENABLED_HIDDEN"` (включает рассуждения без показа цепочки)
+- `Effort`: `"low"`, `"medium"`, `"high"` (управляет глубиной рассуждений, опционально)
+
+📚 **Документация:** [Режим рассуждений в YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
+
 ---
 
 ## 🤖 Доступные модели
@@ -247,9 +302,15 @@ func main() {
 
 ```go
 type CompletionOptions struct {
-    Stream      bool    // Потоковая передача (пока не поддерживается)
-    Temperature float64 // Креативность (0.0 - 1.0)
-    MaxTokens   int     // Максимальное количество токенов
+    Stream           bool              // Потоковая передача (пока не поддерживается)
+    Temperature      float64           // Креативность (0.0 - 1.0)
+    MaxTokens        int               // Максимальное количество токенов
+    ReasoningOptions *ReasoningOptions // Настройки режима рассуждений (опционально)
+}
+
+type ReasoningOptions struct {
+    Mode   string  // "DISABLED", "ENABLED_HIDDEN"
+    Effort *string // "low", "medium", "high" (опционально)
 }
 ```
 
@@ -305,6 +366,7 @@ func main() {
 - [Диалог](examples/dialogue/main.go)
 - [Генерация изображений](examples/image/main.go)
 - [Пользовательские параметры](examples/options/main.go)
+- [Режим рассуждений](examples/reasoning/main.go)
 
 ---
 
