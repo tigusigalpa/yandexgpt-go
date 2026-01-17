@@ -8,9 +8,13 @@
 
 **🌐 Language:** English | [Русский](README-ru.md)
 
-A full-featured Go/Golang SDK for working with YandexGPT API. The package provides a convenient interface for integrating with Yandex Cloud AI models, including YandexART support.
+**📦 Package:** [pkg.go.dev/github.com/tigusigalpa/yandexgpt-go](https://pkg.go.dev/github.com/tigusigalpa/yandexgpt-go)
 
-> **Note:** This package uses [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) for managing Yandex Cloud infrastructure (organizations, clouds, folders, authorization).
+A full-featured Go/Golang SDK for working with YandexGPT API. The package provides a convenient interface for
+integrating with Yandex Cloud AI models, including YandexART support.
+
+> **Note:** This package uses [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) for
+> managing Yandex Cloud infrastructure (organizations, clouds, folders, authorization).
 
 ## 🚀 Features
 
@@ -42,7 +46,8 @@ go get github.com/tigusigalpa/yandexgpt-go
 
 📚 **Documentation:** [OAuth-token](https://yandex.cloud/en/docs/iam/concepts/authorization/oauth-token)
 
-Follow the link to [get an OAuth token](https://oauth.yandex.com/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb):
+Follow the link
+to [get an OAuth token](https://oauth.yandex.com/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb):
 
 ```
 https://oauth.yandex.com/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb
@@ -279,22 +284,25 @@ func main() {
 ```
 
 **Reasoning Mode Options:**
+
 - `Mode`: `"DISABLED"` (default), `"ENABLED_HIDDEN"` (enables reasoning without showing the chain)
 - `Effort`: `"low"`, `"medium"`, `"high"` (controls reasoning depth, optional)
 
-📚 **Documentation:** [Reasoning Mode in YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
+📚 **Documentation:
+** [Reasoning Mode in YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
 
 ---
 
 ## 🤖 Available models
 
-| Model            | Description                                  | Constant                | Context |
-|------------------|----------------------------------------------|-------------------------|---------|
-| `yandexgpt-lite` | Fast and economical model                    | `models.YandexGPTLite`  | 32K     |
-| `yandexgpt`      | Standard model                               | `models.YandexGPT`      | 32K     |
-| `aliceai-llm`    | Alice AI LLM - advanced conversational model | `models.AliceAI`        | 32K     |
+| Model            | Description                                  | Constant               | Context |
+|------------------|----------------------------------------------|------------------------|---------|
+| `yandexgpt-lite` | Fast and economical model                    | `models.YandexGPTLite` | 32K     |
+| `yandexgpt`      | Standard model                               | `models.YandexGPT`     | 32K     |
+| `aliceai-llm`    | Alice AI LLM - advanced conversational model | `models.AliceAI`       | 32K     |
 
-📚 **Complete list of available models:** [Generation models in Yandex AI Studio](https://yandex.cloud/en/docs/ai-studio/concepts/generation/models)
+📚 **Complete list of available models:
+** [Generation models in Yandex AI Studio](https://yandex.cloud/en/docs/ai-studio/concepts/generation/models)
 
 ---
 
@@ -421,5 +429,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👤 Author
 
 **Igor Sazonov**
+
 - Email: sovletig@gmail.com
 - GitHub: [@tigusigalpa](https://github.com/tigusigalpa)

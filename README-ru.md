@@ -8,9 +8,13 @@
 
 **🌐 Язык:** Русский | [English](README.md)
 
-Полнофункциональный Go/Golang SDK для работы с YandexGPT API. Пакет предоставляет удобный интерфейс для интеграции с AI моделями Yandex Cloud, включая поддержку YandexART.
+**📦 Package:** [pkg.go.dev/github.com/tigusigalpa/yandexgpt-go](https://pkg.go.dev/github.com/tigusigalpa/yandexgpt-go)
 
-> **Примечание:** Пакет использует [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) для управления облачной инфраструктурой Yandex Cloud (организации, облака, каталоги, авторизация).
+Полнофункциональный Go/Golang SDK для работы с YandexGPT API. Пакет предоставляет удобный интерфейс для интеграции с AI
+моделями Yandex Cloud, включая поддержку YandexART.
+
+> **Примечание:** Пакет использует [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) для
+> управления облачной инфраструктурой Yandex Cloud (организации, облака, каталоги, авторизация).
 
 ## 🚀 Возможности
 
@@ -42,7 +46,8 @@ go get github.com/tigusigalpa/yandexgpt-go
 
 📚 **Документация:** [OAuth-токен](https://yandex.cloud/ru/docs/iam/concepts/authorization/oauth-token)
 
-Перейдите по ссылке для [получения OAuth токена](https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb):
+Перейдите по ссылке
+для [получения OAuth токена](https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb):
 
 ```
 https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb
@@ -279,22 +284,25 @@ func main() {
 ```
 
 **Параметры режима рассуждений:**
+
 - `Mode`: `"DISABLED"` (по умолчанию), `"ENABLED_HIDDEN"` (включает рассуждения без показа цепочки)
 - `Effort`: `"low"`, `"medium"`, `"high"` (управляет глубиной рассуждений, опционально)
 
-📚 **Документация:** [Режим рассуждений в YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
+📚 **Документация:
+** [Режим рассуждений в YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
 
 ---
 
 ## 🤖 Доступные модели
 
-| Модель           | Описание                                      | Константа               | Контекст |
-|------------------|-----------------------------------------------|-------------------------|----------|
-| `yandexgpt-lite` | Быстрая и экономичная модель                  | `models.YandexGPTLite`  | 32K      |
-| `yandexgpt`      | Стандартная модель                            | `models.YandexGPT`      | 32K      |
-| `aliceai-llm`    | Alice AI LLM - продвинутая разговорная модель | `models.AliceAI`        | 32K      |
+| Модель           | Описание                                      | Константа              | Контекст |
+|------------------|-----------------------------------------------|------------------------|----------|
+| `yandexgpt-lite` | Быстрая и экономичная модель                  | `models.YandexGPTLite` | 32K      |
+| `yandexgpt`      | Стандартная модель                            | `models.YandexGPT`     | 32K      |
+| `aliceai-llm`    | Alice AI LLM - продвинутая разговорная модель | `models.AliceAI`       | 32K      |
 
-📚 **Полный список доступных моделей:** [Модели генерации в Yandex AI Studio](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/models)
+📚 **Полный список доступных моделей:
+** [Модели генерации в Yandex AI Studio](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/models)
 
 ---
 
@@ -421,5 +429,6 @@ go test -cover ./...
 ## 👤 Автор
 
 **Igor Sazonov**
+
 - Email: sovletig@gmail.com
 - GitHub: [@tigusigalpa](https://github.com/tigusigalpa)
