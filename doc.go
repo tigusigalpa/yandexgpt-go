@@ -65,6 +65,32 @@
 //	imageData, _ := base64.StdEncoding.DecodeString(result.ImageBase64)
 //	os.WriteFile("output.jpg", imageData, 0644)
 //
+// # Conversations API
+//
+// Manage server-side conversations and their items:
+//
+//	conv, err := client.Conversations().Create(
+//	    map[string]string{"title": "Support Chat"},
+//	    nil,
+//	)
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//
+//	// Add items
+//	items, err := client.Conversations().CreateItems(conv.ID, []yandexgpt.ConversationItem{
+//	    {
+//	        Type: "message",
+//	        Role: "user",
+//	        Content: []yandexgpt.ConversationContentPart{
+//	            {Type: "input_text", Text: "Hello!"},
+//	        },
+//	    },
+//	})
+//
+//	// List items
+//	list, err := client.Conversations().ListItems(conv.ID, nil)
+//
 // # Custom Options
 //
 // Configure generation parameters:

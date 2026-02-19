@@ -95,3 +95,45 @@ type ImageGenerationResult struct {
 	OperationID string
 	ImageBase64 string
 }
+
+// Conversations API types
+
+type Conversation struct {
+	ID        string                 `json:"id"`
+	Object    string                 `json:"object"`
+	Metadata  map[string]string      `json:"metadata,omitempty"`
+	CreatedAt int64                  `json:"created_at"`
+}
+
+type ConversationDeleted struct {
+	Object  string `json:"object"`
+	Deleted bool   `json:"deleted"`
+	ID      string `json:"id"`
+}
+
+type ConversationContentPart struct {
+	Type string `json:"type"`
+	Text string `json:"text,omitempty"`
+}
+
+type ConversationItem struct {
+	Type    string                    `json:"type"`
+	ID      string                    `json:"id,omitempty"`
+	Status  string                    `json:"status,omitempty"`
+	Role    string                    `json:"role,omitempty"`
+	Content []ConversationContentPart `json:"content,omitempty"`
+}
+
+type ConversationItemsList struct {
+	Object  string             `json:"object"`
+	Data    []ConversationItem `json:"data"`
+	HasMore bool               `json:"has_more"`
+	FirstID string             `json:"first_id"`
+	LastID  string             `json:"last_id"`
+}
+
+type ListItemsOptions struct {
+	Limit *int
+	Order *string
+	After *string
+}

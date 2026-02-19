@@ -43,6 +43,7 @@
 - 🔐 Автоматическое управление OAuth и IAM токенами
 - 🎯 Поддержка всех доступных моделей YandexGPT
 - 📝 Поддержка диалогов и одиночных запросов
+- 🗂️ **Conversations API** — управление диалогами на стороне сервера
 - ⚡ Автоматическое обновление токенов
 - 🧪 Покрытие тестами
 - 📚 Подробная документация
@@ -168,6 +169,158 @@ func main() {
     }
     
     fmt.Println(response.Result.Alternatives[0].Message.Text)
+}
+```
+
+### Conversations API
+
+SDK поддерживает работу с [Conversations API](https://yandex.cloud/ru/docs/ai-studio/conversations/) для управления диалогами и их элементами на стороне сервера Yandex Cloud.
+
+**Доступные методы:**
+
+| Метод | Описание |
+|-------|----------|
+| `Create()` | Создание нового диалога |
+| `Get()` | Получение диалога по ID |
+| `Update()` | Обновление метаданных диалога |
+| `Delete()` | Удаление диалога |
+| `CreateItems()` | Добавление элементов в диалог |
+| `ListItems()` | Получение списка элементов диалога |
+| `GetItem()` | Получение одного элемента диалога |
+| `DeleteItem()` | Удаление элемента из диалога |
+
+**Управление диалогами:**
+
+```go
+package main
+
+import (
+    "fmt"
+    "log"
+
+    "github.com/tigusigalpa/yandexgpt-go"
+)
+
+func main() {
+    client, err := yandexgpt.NewClient("your_oauth_token", "your_folder_id")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Создание диалога с метаданными
+    conv, err := client.Conversations().Create(
+        map[string]string{"title": "Техническая поддержка", "user_id": "12345"},
+        nil,
+    )
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("Conversation ID: %s\n", conv.ID)
+
+    // Получение диалога
+    conv, err = client.Conversations().Get(conv.ID)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Обновление метаданных
+    conv, err = client.Conversations().Update(conv.ID, map[string]string{
+        "title":  "Обновлённый заголовок",
+        "status": "active",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Удаление диалога
+    deleted, err := client.Conversations().Delete(conv.ID)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("Deleted: %v\n", deleted.Deleted)
+}
+```
+
+**Управление элементами диалога:**
+
+```go
+package main
+
+import (
+    "fmt"
+    "log"
+
+    "github.com/tigusigalpa/yandexgpt-go"
+)
+
+func main() {
+    client, err := yandexgpt.NewClient("your_oauth_token", "your_folder_id")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    conversationID := "conv_123"
+
+    // Добавление элементов в диалог
+    items, err := client.Conversations().CreateItems(conversationID, []yandexgpt.ConversationItem{
+        {
+            Type: "message",
+            Role: "user",
+            Content: []yandexgpt.ConversationContentPart{
+                {Type: "input_text", Text: "Привет! Как дела?"},
+            },
+        },
+        {
+            Type: "message",
+            Role: "assistant",
+            Content: []yandexgpt.ConversationContentPart{
+                {Type: "output_text", Text: "Здравствуйте! Всё отлично, чем могу помочь?"},
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Получение списка элементов (с пагинацией)
+    limit := 20
+    order := "asc"
+    list, err := client.Conversations().ListItems(conversationID, &yandexgpt.ListItemsOptions{
+        Limit: &limit,
+        Order: &order,
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    for _, item := range list.Data {
+        if len(item.Content) > 0 {
+            fmt.Printf("%s: %s\n", item.Role, item.Content[0].Text)
+        }
+    }
+
+    // Пагинация: получение следующей страницы
+    if list.HasMore {
+        nextList, _ := client.Conversations().ListItems(conversationID, &yandexgpt.ListItemsOptions{
+            Limit: &limit,
+            Order: &order,
+            After: &list.LastID,
+        })
+        _ = nextList
+    }
+
+    // Получение одного элемента
+    item, err := client.Conversations().GetItem(conversationID, items.FirstID)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("Item: %s (%s)\n", item.ID, item.Role)
+
+    // Удаление элемента
+    _, err = client.Conversations().DeleteItem(conversationID, items.FirstID)
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
@@ -1293,7 +1446,7 @@ func (lc *LoggingClient) GenerateText(prompt string, model string) (string, erro
 
 ## 🔖 Ключевые слова
 
-YandexGPT, YandexGPT API, Go SDK, Golang, Yandex Cloud, AI, искусственный интеллект, машинное обучение, нейросети, языковые модели, LLM, GPT, чат-бот, генерация текста, YandexART, генерация изображений, AI SDK, Yandex AI, Foundation Models, natural language processing, NLP, диалоговые системы, виртуальные ассистенты, автоматизация, облачные технологии, cloud AI, Russian AI, российский AI
+YandexGPT, YandexGPT API, Go SDK, Golang, Yandex Cloud, AI, искусственный интеллект, машинное обучение, нейросети, языковые модели, LLM, GPT, чат-бот, генерация текста, YandexART, генерация изображений, Conversations API, AI SDK, Yandex AI, Foundation Models, natural language processing, NLP, диалоговые системы, виртуальные ассистенты, автоматизация, облачные технологии, cloud AI, Russian AI, российский AI
 
 ---
 

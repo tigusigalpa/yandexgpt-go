@@ -18,11 +18,12 @@ const (
 )
 
 type Client struct {
-	httpClient  *http.Client
-	oauthToken  string
-	folderID    string
-	iamToken    string
-	tokenExpiry time.Time
+	httpClient          *http.Client
+	oauthToken          string
+	folderID            string
+	iamToken            string
+	tokenExpiry         time.Time
+	conversationsClient *ConversationsClient
 }
 
 func NewClient(oauthToken, folderID string) (*Client, error) {
@@ -370,6 +371,14 @@ func (c *Client) GetAvailableModels() []string {
 
 func (c *Client) GetModelDescriptions() map[string]string {
 	return models.GetModelDescriptions()
+}
+
+// Conversations returns the ConversationsClient for managing conversations and their items.
+func (c *Client) Conversations() *ConversationsClient {
+	if c.conversationsClient == nil {
+		c.conversationsClient = &ConversationsClient{client: c}
+	}
+	return c.conversationsClient
 }
 
 func (c *Client) GetFolderID() string {

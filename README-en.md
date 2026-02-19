@@ -43,6 +43,7 @@ integrating with Yandex Cloud AI models, including YandexART support for image g
 - 🔐 Automatic management of OAuth and IAM tokens
 - 🎯 Support for all available YandexGPT models
 - 📝 Support for dialogues and single requests
+- 🗂️ **Conversations API** — server-side conversation management
 - ⚡ Automatic token renewal
 - 🧪 Test coverage
 - 📚 Detailed documentation
@@ -168,6 +169,158 @@ func main() {
     }
     
     fmt.Println(response.Result.Alternatives[0].Message.Text)
+}
+```
+
+### Conversations API
+
+The SDK supports the [Conversations API](https://yandex.cloud/ru/docs/ai-studio/conversations/) for managing conversations and their items on the Yandex Cloud server side.
+
+**Available methods:**
+
+| Method | Description |
+|--------|-------------|
+| `Create()` | Create a new conversation |
+| `Get()` | Retrieve a conversation by ID |
+| `Update()` | Update conversation metadata |
+| `Delete()` | Delete a conversation |
+| `CreateItems()` | Add items to a conversation |
+| `ListItems()` | List conversation items |
+| `GetItem()` | Retrieve a single conversation item |
+| `DeleteItem()` | Delete an item from a conversation |
+
+**Managing conversations:**
+
+```go
+package main
+
+import (
+    "fmt"
+    "log"
+
+    "github.com/tigusigalpa/yandexgpt-go"
+)
+
+func main() {
+    client, err := yandexgpt.NewClient("your_oauth_token", "your_folder_id")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Create a conversation with metadata
+    conv, err := client.Conversations().Create(
+        map[string]string{"title": "Technical Support", "user_id": "12345"},
+        nil,
+    )
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("Conversation ID: %s\n", conv.ID)
+
+    // Retrieve a conversation
+    conv, err = client.Conversations().Get(conv.ID)
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Update metadata
+    conv, err = client.Conversations().Update(conv.ID, map[string]string{
+        "title":  "Updated Title",
+        "status": "active",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // Delete a conversation
+    deleted, err := client.Conversations().Delete(conv.ID)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("Deleted: %v\n", deleted.Deleted)
+}
+```
+
+**Managing conversation items:**
+
+```go
+package main
+
+import (
+    "fmt"
+    "log"
+
+    "github.com/tigusigalpa/yandexgpt-go"
+)
+
+func main() {
+    client, err := yandexgpt.NewClient("your_oauth_token", "your_folder_id")
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    conversationID := "conv_123"
+
+    // Add items to a conversation
+    items, err := client.Conversations().CreateItems(conversationID, []yandexgpt.ConversationItem{
+        {
+            Type: "message",
+            Role: "user",
+            Content: []yandexgpt.ConversationContentPart{
+                {Type: "input_text", Text: "Hello! How are you?"},
+            },
+        },
+        {
+            Type: "message",
+            Role: "assistant",
+            Content: []yandexgpt.ConversationContentPart{
+                {Type: "output_text", Text: "Hi! I am doing great, how can I help?"},
+            },
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    // List items (with pagination)
+    limit := 20
+    order := "asc"
+    list, err := client.Conversations().ListItems(conversationID, &yandexgpt.ListItemsOptions{
+        Limit: &limit,
+        Order: &order,
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+
+    for _, item := range list.Data {
+        if len(item.Content) > 0 {
+            fmt.Printf("%s: %s\n", item.Role, item.Content[0].Text)
+        }
+    }
+
+    // Pagination: get the next page
+    if list.HasMore {
+        nextList, _ := client.Conversations().ListItems(conversationID, &yandexgpt.ListItemsOptions{
+            Limit: &limit,
+            Order: &order,
+            After: &list.LastID,
+        })
+        _ = nextList
+    }
+
+    // Retrieve a single item
+    item, err := client.Conversations().GetItem(conversationID, items.FirstID)
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("Item: %s (%s)\n", item.ID, item.Role)
+
+    // Delete an item
+    _, err = client.Conversations().DeleteItem(conversationID, items.FirstID)
+    if err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
@@ -1293,7 +1446,7 @@ All significant changes to the project are documented in [CHANGELOG.md](CHANGELO
 
 ## 🔖 Keywords
 
-YandexGPT, YandexGPT API, Go SDK, Golang, Yandex Cloud, AI, artificial intelligence, machine learning, neural networks, language models, LLM, GPT, chatbot, text generation, YandexART, image generation, AI SDK, Yandex AI, Foundation Models, natural language processing, NLP, dialogue systems, virtual assistants, automation, cloud technologies, cloud AI, Russian AI
+YandexGPT, YandexGPT API, Go SDK, Golang, Yandex Cloud, AI, artificial intelligence, machine learning, neural networks, language models, LLM, GPT, chatbot, text generation, YandexART, image generation, Conversations API, AI SDK, Yandex AI, Foundation Models, natural language processing, NLP, dialogue systems, virtual assistants, automation, cloud technologies, cloud AI, Russian AI
 
 ---
 
