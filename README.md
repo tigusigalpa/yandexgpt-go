@@ -1,57 +1,34 @@
 # YandexGPT Go SDK
 
-![YandexGPT Golang](https://github.com/user-attachments/assets/35073f18-14ce-486f-937b-4c70e9af9e6c)
+![YandexGPT Golang](https://i.postimg.cc/tCxgMvN4/531694893-35073f18-14ce-486f-937b-4c70e9af9e6c.jpg)
 
 [![Go Version](https://img.shields.io/github/go-mod/go-version/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go)
 [![License](https://img.shields.io/github/license/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/blob/main/LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tigusigalpa/yandexgpt-go)](https://goreportcard.com/report/github.com/tigusigalpa/yandexgpt-go)
 
-**🌐 Язык:** Русский | [English](README-en.md)
+Русский | [English](README-en.md)
 
-**📦 Package:** [pkg.go.dev/github.com/tigusigalpa/yandexgpt-go](https://pkg.go.dev/github.com/tigusigalpa/yandexgpt-go)
+[pkg.go.dev/github.com/tigusigalpa/yandexgpt-go](https://pkg.go.dev/github.com/tigusigalpa/yandexgpt-go)
 
-Полнофункциональный Go/Golang SDK для работы с YandexGPT API. Пакет предоставляет удобный интерфейс для интеграции с AI
-моделями Yandex Cloud, включая поддержку YandexART для генерации изображений.
+Go SDK для YandexGPT API с поддержкой генерации текста и изображений (YandexART).
 
-**YandexGPT Go SDK** - это мощная библиотека для разработчиков на языке Go, которая упрощает интеграцию с искусственным интеллектом от Yandex Cloud. Библиотека позволяет создавать интеллектуальные приложения, чат-боты, системы автоматизации и AI-ассистенты с использованием передовых языковых моделей YandexGPT, YandexGPT Lite и AliceAI LLM.
-
-### Почему выбирают YandexGPT Go SDK?
-
-- **🚀 Быстрая разработка**: Готовые к использованию методы для генерации текста, ведения диалогов и создания изображений
-- **🔒 Безопасность**: Автоматическое управление токенами OAuth и IAM с поддержкой их обновления
-- **⚡ Производительность**: Оптимизированная работа с API, поддержка конкурентных запросов
-- **🎨 Универсальность**: Поддержка текстовых моделей YandexGPT и генерации изображений через YandexART
-- **📖 Документация**: Подробные примеры кода и руководства для быстрого старта
-- **🧪 Надежность**: Полное покрытие тестами и активная поддержка
-
-### Основные сценарии использования
-
-- **Чат-боты и виртуальные ассистенты**: Создание интеллектуальных диалоговых систем для поддержки клиентов
-- **Генерация контента**: Автоматическое создание текстов, статей, описаний товаров
-- **Анализ и обработка текста**: Суммаризация, классификация, извлечение информации
-- **Генерация изображений**: Создание визуального контента на основе текстовых описаний
-- **Автоматизация бизнес-процессов**: Интеллектуальная обработка документов и данных
-- **Образовательные платформы**: AI-помощники для обучения и тестирования
+Пакет берёт на себя работу с токенами, предоставляет методы для диалогов, одиночных запросов и Conversations API.
 
 > **Примечание:** Пакет использует [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) для
 > управления облачной инфраструктурой Yandex Cloud (организации, облака, каталоги, авторизация).
 
-## 🚀 Возможности
+## Возможности
 
-- 🔌 Простая интеграция с YandexGPT API
-- 🔨 **Поддержка YandexART**
-- 🔐 Автоматическое управление OAuth и IAM токенами
-- 🎯 Поддержка всех доступных моделей YandexGPT
-- 📝 Поддержка диалогов и одиночных запросов
-- 🗂️ **Conversations API** — управление диалогами на стороне сервера
-- ⚡ Автоматическое обновление токенов
-- 🧪 Покрытие тестами
-- 📚 Подробная документация
-- 🚀 Высокая производительность и поддержка конкурентности
+- Генерация текста (YandexGPT, YandexGPT Lite, AliceAI LLM)
+- Генерация изображений (YandexART)
+- Conversations API — серверное хранение диалогов
+- Автоматическое управление OAuth/IAM токенами
+- Режим рассуждений (Chain of Thought)
+- Покрытие тестами
 
 ---
 
-## 📦 Установка
+## Установка
 
 Установите пакет с помощью `go get`:
 
@@ -61,11 +38,11 @@ go get github.com/tigusigalpa/yandexgpt-go
 
 ---
 
-## ⚙️ Настройка
+## Настройка
 
 ### 1. Получение OAuth токена
 
-📚 **Документация:** [OAuth-токен](https://yandex.cloud/ru/docs/iam/concepts/authorization/oauth-token)
+**Документация:** [OAuth-токен](https://yandex.cloud/ru/docs/iam/concepts/authorization/oauth-token)
 
 Перейдите по ссылке
 для [получения OAuth токена](https://oauth.yandex.ru/authorize?response_type=token&client_id=1a6990aa636648e9b2ef855fa7bec2fb):
@@ -89,7 +66,7 @@ export YANDEX_GPT_FOLDER_ID=your_folder_id_here
 
 ---
 
-## 💡 Использование
+## Использование
 
 ### Базовое использование
 
@@ -461,12 +438,11 @@ func main() {
 - `Mode`: `"DISABLED"` (по умолчанию), `"ENABLED_HIDDEN"` (включает рассуждения без показа цепочки)
 - `Effort`: `"low"`, `"medium"`, `"high"` (управляет глубиной рассуждений, опционально)
 
-📚 **Документация:
-** [Режим рассуждений в YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
+**Документация:** [Режим рассуждений в YandexGPT](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
 
 ---
 
-## 🤖 Доступные модели
+## Доступные модели
 
 | Модель           | Описание                                      | Константа              | Контекст |
 |------------------|-----------------------------------------------|------------------------|----------|
@@ -474,12 +450,11 @@ func main() {
 | `yandexgpt`      | Стандартная модель                            | `models.YandexGPT`     | 32K      |
 | `aliceai-llm`    | Alice AI LLM - продвинутая разговорная модель | `models.AliceAI`       | 32K      |
 
-📚 **Полный список доступных моделей:
-** [Модели генерации в Yandex AI Studio](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/models)
+**Полный список моделей:** [Модели генерации в Yandex AI Studio](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/models)
 
 ---
 
-## 🔧 Параметры генерации
+## Параметры генерации
 
 ```go
 type CompletionOptions struct {
@@ -497,7 +472,7 @@ type ReasoningOptions struct {
 
 ---
 
-## ⚠️ Обработка ошибок
+## Обработка ошибок
 
 ```go
 package main
@@ -539,7 +514,7 @@ func main() {
 
 ---
 
-## 📚 Примеры
+## Примеры
 
 См. директорию [examples](examples/) для дополнительных примеров использования:
 
@@ -551,49 +526,21 @@ func main() {
 
 ---
 
-## 🔍 Сравнение моделей YandexGPT
+## Сравнение моделей
 
-### Выбор подходящей модели для вашей задачи
+| Модель | Скорость | Качество | Применение |
+|--------|----------|----------|------------|
+| YandexGPT Lite | Высокая | Хорошее | Чат-боты, простые задачи, прототипы |
+| YandexGPT | Средняя | Отличное | Анализ, генерация статей, логические задачи |
+| AliceAI LLM | Средняя | Очень хорошее | Диалоги, ассистенты |
 
-| Характеристика | YandexGPT Lite | YandexGPT | AliceAI LLM |
-|----------------|----------------|-----------|-------------|
-| **Скорость** | ⚡⚡⚡ Очень быстрая | ⚡⚡ Быстрая | ⚡⚡ Быстрая |
-| **Качество** | ⭐⭐⭐ Хорошее | ⭐⭐⭐⭐⭐ Отличное | ⭐⭐⭐⭐ Очень хорошее |
-| **Стоимость** | 💰 Экономичная | 💰💰 Стандартная | 💰💰 Стандартная |
-| **Контекст** | 32K токенов | 32K токенов | 32K токенов |
-| **Применение** | Простые задачи, чат-боты | Сложные задачи, анализ | Диалоги, ассистенты |
-| **Креативность** | Средняя | Высокая | Высокая |
-
-### Рекомендации по выбору модели
-
-**YandexGPT Lite** - идеальна для:
-- Быстрых ответов в чат-ботах
-- Простой классификации текста
-- Генерации коротких текстов
-- Приложений с высокой нагрузкой
-- Прототипирования и тестирования
-
-**YandexGPT** - рекомендуется для:
-- Сложного анализа текста
-- Генерации длинных статей
-- Творческих задач (стихи, истории)
-- Технической документации
-- Решения логических задач
-
-**AliceAI LLM** - оптимальна для:
-- Естественных диалогов
-- Виртуальных ассистентов
-- Персонализированных рекомендаций
-- Контекстно-зависимых ответов
-- Эмоционально окрашенного общения
+Все модели поддерживают контекст 32K токенов.
 
 ---
 
-## 🎯 Продвинутые возможности
+## Продвинутые возможности
 
 ### Управление контекстом диалога
-
-Для создания качественных диалоговых систем важно правильно управлять контекстом:
 
 ```go
 type DialogManager struct {
@@ -736,14 +683,13 @@ func SummarizeLongText(client *yandexgpt.Client, longText string) (string, error
 
 ---
 
-## 💡 Лучшие практики
+## Лучшие практики
 
 ### Оптимизация промптов
 
-1. **Будьте конкретны**: Четко формулируйте задачу и ожидаемый формат ответа
-2. **Используйте примеры**: Few-shot learning повышает качество результатов
-3. **Структурируйте запросы**: Разделяйте инструкции и данные
-4. **Контролируйте длину**: Оптимизируйте использование токенов
+- Чётко формулируйте задачу и формат ответа
+- Добавляйте примеры (few-shot)
+- Разделяйте инструкции и данные
 
 ```go
 // ❌ Плохой промпт
@@ -825,9 +771,7 @@ func (cc *CachedClient) GenerateText(prompt string) (string, error) {
 
 ---
 
-## 🔧 Устранение неполадок
-
-### Частые проблемы и решения
+## Устранение неполадок
 
 #### Ошибка аутентификации
 
@@ -897,9 +841,7 @@ options := &yandexgpt.CompletionOptions{
 
 ---
 
-## ❓ Часто задаваемые вопросы (FAQ)
-
-### Общие вопросы
+## FAQ
 
 **Q: Нужен ли мне платный аккаунт Yandex Cloud?**
 
@@ -983,15 +925,12 @@ func handleRateLimit(err error) bool {
 
 ---
 
-## ⚡ Производительность и оптимизация
+## Производительность
 
-### Советы по оптимизации
-
-1. **Выбор модели**: Используйте YandexGPT Lite для простых задач - она в 2-3 раза быстрее
-2. **Управление контекстом**: Ограничивайте историю диалога 10-15 последними сообщениями
-3. **Параллелизм**: Обрабатывайте независимые запросы конкурентно
-4. **Кэширование**: Кэшируйте частые или идентичные запросы
-5. **Пулы соединений**: Переиспользуйте HTTP клиенты
+- YandexGPT Lite быстрее в 2-3 раза
+- Ограничивайте историю диалога 10-15 сообщениями
+- Обрабатывайте независимые запросы конкурентно
+- Кэшируйте частые запросы
 
 ### Мониторинг производительности
 
@@ -1051,15 +990,12 @@ func EstimateCost(inputTokens, outputTokens int, model string) float64 {
 
 ---
 
-## 🔐 Безопасность
+## Безопасность
 
-### Рекомендации по безопасности
-
-1. **Никогда не храните токены в коде**: Используйте переменные окружения или секретные хранилища
-2. **Ротация токенов**: Регулярно обновляйте OAuth токены
-3. **Валидация входных данных**: Проверяйте пользовательский ввод перед отправкой в API
-4. **Ограничение доступа**: Используйте минимально необходимые права в Yandex Cloud
-5. **Логирование**: Не логируйте чувствительные данные и токены
+- Храните токены в переменных окружения или секретных хранилищах
+- Регулярно обновляйте OAuth токены
+- Проверяйте пользовательский ввод перед отправкой в API
+- Не логируйте токены
 
 ### Пример безопасной конфигурации
 
@@ -1108,7 +1044,7 @@ func SanitizeInput(input string) string {
 
 ---
 
-## 🧪 Тестирование
+## Тестирование
 
 Запуск тестов:
 
@@ -1124,9 +1060,7 @@ go test -cover ./...
 
 ---
 
-## 📖 Документация
-
-Для подробной документации см.:
+## Документация
 
 - [Руководство по настройке](docs/configuration-ru.md)
 - [Справочник API](docs/api-ru.md)
@@ -1134,7 +1068,7 @@ go test -cover ./...
 
 ---
 
-## 🌟 Интеграция с популярными фреймворками
+## Интеграция с фреймворками
 
 ### Gin Web Framework
 
@@ -1244,7 +1178,7 @@ func (s *AIService) Generate(ctx context.Context, req *pb.GenerateRequest) (*pb.
 
 ---
 
-## 📊 Мониторинг и логирование
+## Мониторинг и логирование
 
 ### Интеграция с Prometheus
 
@@ -1341,116 +1275,67 @@ func (lc *LoggingClient) GenerateText(prompt string, model string) (string, erro
 
 ---
 
-## 🚀 Roadmap и будущие возможности
+## Roadmap
 
-### Планируемые функции
+Реализовано:
+- YandexGPT, YandexGPT Lite, AliceAI LLM
+- YandexART
+- Режим рассуждений (Chain of Thought)
+- Автоматическое управление токенами
 
-- ✅ Поддержка YandexGPT и YandexGPT Lite
-- ✅ Интеграция с YandexART
-- ✅ Режим рассуждений (Chain of Thought)
-- ✅ Автоматическое управление токенами
-- 🔄 Потоковая передача ответов (Streaming)
-- 🔄 Поддержка функций (Function Calling)
-- 📋 Поддержка мультимодальности (изображения в промптах)
-- 📋 Асинхронные операции
-- 📋 Расширенная работа с эмбеддингами
-- 📋 Интеграция с векторными базами данных
+В работе:
+- Потоковая передача ответов (Streaming)
+- Function Calling
 
-### Как внести вклад
-
-Мы приветствуем вклад сообщества! Вы можете помочь:
-
-- 🐛 Сообщать об ошибках через [Issues](https://github.com/tigusigalpa/yandexgpt-go/issues)
-- 💡 Предлагать новые функции
-- 📝 Улучшать документацию
-- 🔧 Отправлять Pull Requests
-- ⭐ Ставить звезду проекту на GitHub
+Планируется:
+- Мультимодальность (изображения в промптах)
+- Асинхронные операции
+- Эмбеддинги
+- Интеграция с векторными БД
 
 ---
 
-## 🤝 Вклад в проект
+## Вклад в проект
 
-Вклад приветствуется! Пожалуйста, прочитайте [CONTRIBUTING.md](CONTRIBUTING.md) для деталей.
-
----
-
-## 📝 Лицензия
-
-Этот проект лицензирован под лицензией MIT - см. файл [LICENSE](LICENSE) для деталей.
+Баги, идеи, PR — всё принимается. Подробности в [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-## 🔗 Полезные ссылки
+## Лицензия
 
-### Официальная документация Yandex Cloud
-
-- 📖 [Быстрый старт YandexGPT](https://yandex.cloud/ru/docs/foundation-models/quickstart/yandexgpt)
-- 🔑 [Аутентификация в API](https://yandex.cloud/ru/docs/iam/concepts/authorization/iam-token)
-- 🏗️ [Управление ресурсами](https://yandex.cloud/ru/docs/resource-manager/)
-- 🤖 [API Foundation Models](https://yandex.cloud/ru/docs/foundation-models/concepts/api)
-- 💰 [Тарифы YandexGPT](https://yandex.cloud/ru/docs/foundation-models/pricing)
-- 🎨 [YandexART документация](https://yandex.cloud/ru/docs/foundation-models/concepts/yandexart)
-- 🧠 [Режим рассуждений](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
-- 📊 [Лимиты и квоты](https://yandex.cloud/ru/docs/foundation-models/concepts/limits)
-
-### Сообщество и поддержка
-
-- 💬 [Telegram сообщество Yandex Cloud](https://t.me/yandexcloud)
-- 🎓 [Обучающие материалы](https://yandex.cloud/ru/training)
-- 📺 [YouTube канал Yandex Cloud](https://www.youtube.com/@YandexCloudRu)
-- 📰 [Блог Yandex Cloud](https://yandex.cloud/ru/blog)
-
-### Связанные проекты
-
-- 🔧 [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) - Клиент для управления Yandex Cloud
-- 📦 [Официальный Go SDK Yandex Cloud](https://github.com/yandex-cloud/go-sdk)
-- 🐍 [Python SDK для YandexGPT](https://github.com/yandex-cloud/python-sdk)
-
-### Примеры и туториалы
-
-- 🎯 [Создание чат-бота с YandexGPT](examples/chatbot/)
-- 🖼️ [Генератор изображений с YandexART](examples/image-generator/)
-- 📝 [Система генерации контента](examples/content-generator/)
-- 🔍 [Анализатор текста](examples/text-analyzer/)
+MIT — см. [LICENSE](LICENSE).
 
 ---
 
-## 📈 Статистика проекта
+## Ссылки
 
-![GitHub stars](https://img.shields.io/github/stars/tigusigalpa/yandexgpt-go?style=social)
-![GitHub forks](https://img.shields.io/github/forks/tigusigalpa/yandexgpt-go?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/tigusigalpa/yandexgpt-go?style=social)
+**Документация Yandex Cloud:**
+- [Быстрый старт YandexGPT](https://yandex.cloud/ru/docs/foundation-models/quickstart/yandexgpt)
+- [Аутентификация в API](https://yandex.cloud/ru/docs/iam/concepts/authorization/iam-token)
+- [Управление ресурсами](https://yandex.cloud/ru/docs/resource-manager/)
+- [API Foundation Models](https://yandex.cloud/ru/docs/foundation-models/concepts/api)
+- [Тарифы YandexGPT](https://yandex.cloud/ru/docs/foundation-models/pricing)
+- [YandexART](https://yandex.cloud/ru/docs/foundation-models/concepts/yandexart)
+- [Режим рассуждений](https://yandex.cloud/ru/docs/ai-studio/concepts/generation/chain-of-thought)
+- [Лимиты и квоты](https://yandex.cloud/ru/docs/foundation-models/concepts/limits)
 
-![GitHub issues](https://img.shields.io/github/issues/tigusigalpa/yandexgpt-go)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/tigusigalpa/yandexgpt-go)
-![GitHub last commit](https://img.shields.io/github/last-commit/tigusigalpa/yandexgpt-go)
+**Сообщество:**
+- [Telegram Yandex Cloud](https://t.me/yandexcloud)
+- [Обучающие материалы](https://yandex.cloud/ru/training)
 
----
-
-## 🏆 Благодарности
-
-Благодарим всех контрибьюторов и пользователей, которые помогают улучшать этот проект!
-
-Особая благодарность:
-- Команде Yandex Cloud за отличное API
-- Сообществу Go разработчиков
-- Всем, кто сообщает об ошибках и предлагает улучшения
-
----
-
-## 📄 Changelog
-
-Все значимые изменения в проекте документируются в [CHANGELOG.md](CHANGELOG.md).
+**Связанные проекты:**
+- [yandex-cloud-client-go](https://github.com/tigusigalpa/yandex-cloud-client-go) — клиент для управления Yandex Cloud
+- [Официальный Go SDK Yandex Cloud](https://github.com/yandex-cloud/go-sdk)
 
 ---
 
-## 🔖 Ключевые слова
+## Changelog
 
-YandexGPT, YandexGPT API, Go SDK, Golang, Yandex Cloud, AI, искусственный интеллект, машинное обучение, нейросети, языковые модели, LLM, GPT, чат-бот, генерация текста, YandexART, генерация изображений, Conversations API, AI SDK, Yandex AI, Foundation Models, natural language processing, NLP, диалоговые системы, виртуальные ассистенты, автоматизация, облачные технологии, cloud AI, Russian AI, российский AI
+Все изменения в [CHANGELOG.md](CHANGELOG.md).
 
 ---
 
-## 👤 Автор
+## Автор
 
 **Igor Sazonov**
 
