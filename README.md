@@ -2,8 +2,8 @@
 
 ![YandexGPT Golang](https://i.postimg.cc/tCxgMvN4/531694893-35073f18-14ce-486f-937b-4c70e9af9e6c.jpg)
 
-[![Go Version](https://img.shields.io/github/go-mod/go-version/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/v2)
-[![License](https://img.shields.io/github/license/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/v2/blob/main/LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go)
+[![License](https://img.shields.io/github/license/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/blob/main/LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tigusigalpa/yandexgpt-go/v2)](https://goreportcard.com/report/github.com/tigusigalpa/yandexgpt-go/v2)
 
 Русский | [English](README-en.md)
