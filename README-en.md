@@ -2,13 +2,13 @@
 
 ![YandexGPT Golang](https://i.postimg.cc/tCxgMvN4/531694893-35073f18-14ce-486f-937b-4c70e9af9e6c.jpg)
 
-[![Go Version](https://img.shields.io/github/go-mod/go-version/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go)
-[![License](https://img.shields.io/github/license/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/blob/main/LICENSE)
-[![Go Report Card](https://goreportcard.com/badge/github.com/tigusigalpa/yandexgpt-go)](https://goreportcard.com/report/github.com/tigusigalpa/yandexgpt-go)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/v2)
+[![License](https://img.shields.io/github/license/tigusigalpa/yandexgpt-go)](https://github.com/tigusigalpa/yandexgpt-go/v2/blob/main/LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/tigusigalpa/yandexgpt-go/v2)](https://goreportcard.com/report/github.com/tigusigalpa/yandexgpt-go/v2)
 
 English | [Русский](README.md)
 
-[pkg.go.dev/github.com/tigusigalpa/yandexgpt-go](https://pkg.go.dev/github.com/tigusigalpa/yandexgpt-go)
+[pkg.go.dev/github.com/tigusigalpa/yandexgpt-go/v2](https://pkg.go.dev/github.com/tigusigalpa/yandexgpt-go/v2)
 
 Go SDK for YandexGPT API with text and image generation (YandexART) support.
 
@@ -33,7 +33,7 @@ Handles token management, provides methods for dialogues, single requests, and t
 Install the package using `go get`:
 
 ```bash
-go get github.com/tigusigalpa/yandexgpt-go
+go get github.com/tigusigalpa/yandexgpt-go/v2
 ```
 
 ---
@@ -77,8 +77,8 @@ import (
     "fmt"
     "log"
     
-    "github.com/tigusigalpa/yandexgpt-go"
-    "github.com/tigusigalpa/yandexgpt-go/models"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
+    "github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func main() {
@@ -111,8 +111,8 @@ import (
     "fmt"
     "log"
     
-    "github.com/tigusigalpa/yandexgpt-go"
-    "github.com/tigusigalpa/yandexgpt-go/models"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
+    "github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func main() {
@@ -175,7 +175,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/tigusigalpa/yandexgpt-go"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
 )
 
 func main() {
@@ -227,7 +227,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/tigusigalpa/yandexgpt-go"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
 )
 
 func main() {
@@ -312,7 +312,7 @@ import (
     "log"
     "os"
     
-    "github.com/tigusigalpa/yandexgpt-go"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
 )
 
 func main() {
@@ -356,8 +356,8 @@ import (
     "fmt"
     "log"
     
-    "github.com/tigusigalpa/yandexgpt-go"
-    "github.com/tigusigalpa/yandexgpt-go/models"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
+    "github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func main() {
@@ -395,8 +395,8 @@ import (
     "fmt"
     "log"
     
-    "github.com/tigusigalpa/yandexgpt-go"
-    "github.com/tigusigalpa/yandexgpt-go/models"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
+    "github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func main() {
@@ -482,8 +482,8 @@ import (
     "fmt"
     "log"
     
-    "github.com/tigusigalpa/yandexgpt-go"
-    "github.com/tigusigalpa/yandexgpt-go/models"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
+    "github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func main() {
@@ -1077,8 +1077,8 @@ package main
 
 import (
     "github.com/gin-gonic/gin"
-    "github.com/tigusigalpa/yandexgpt-go"
-    "github.com/tigusigalpa/yandexgpt-go/models"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
+    "github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func main() {
@@ -1121,7 +1121,7 @@ package main
 
 import (
     "github.com/labstack/echo/v4"
-    "github.com/tigusigalpa/yandexgpt-go"
+    "github.com/tigusigalpa/yandexgpt-go/v2"
 )
 
 func main() {

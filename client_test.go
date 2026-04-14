@@ -3,7 +3,7 @@ package yandexgpt
 import (
 	"testing"
 
-	"github.com/tigusigalpa/yandexgpt-go/models"
+	"github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func TestNewClient(t *testing.T) {

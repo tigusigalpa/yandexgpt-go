@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/tigusigalpa/yandexgpt-go"
-	"github.com/tigusigalpa/yandexgpt-go/models"
+	"github.com/tigusigalpa/yandexgpt-go/v2"
+	"github.com/tigusigalpa/yandexgpt-go/v2/models"
 )
 
 func main() {
